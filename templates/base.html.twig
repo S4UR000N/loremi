@@ -14,21 +14,20 @@
     </head>
     <body>
         {% block body %}
-            <div id="navbar">
-                {% block navbar %}
-                {% endblock %}
-            </div>
 
-            <div id="content">
-                {% block content %}{% endblock %}
-            </div>
+            {% block navbar %}
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+
         {% endblock %}
 
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
 
-            <!-- Renders app.js & a webpack runtime.js filex
+            <!-- Renders app.js & a webpack runtime.js files
                 <script src="/build/runtime.js"></script>
                 <script src="/build/app.js"></script> -->
         {% endblock %}

@@ -2,8 +2,64 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-  <div class="container">
-      <h1>Blog</h1>
-      <p>hehe</p>
-  </div>
+    <div id="index_container">
+        <section class="get_text_form_container">
+            <header class="header">Lorem Ipsum</header>
+            <form class="get_text_form" onsubmit="getli(this); return false;">
+                <label for="li_num_of_paras">How many paragraphs you want?</label>
+                    <input type="number" id="li_num_of_paras" name="li_num_of_paras" min="1" max="5" value="2"><br>
+                <label for="li_len_of_paras">How long paragraphs you want?</label>
+                    <select id="li_len_of_paras" name="li_len_of_paras">
+                        <option value="short">short</option>
+                        <option value="medium">medium</option>
+                        <option value="long">long</option>
+                    </select><br>
+                <button>GET</button>
+            </form>
+            <section id="litext" class="api_text_container"></section>
+        </section>
+
+        <section class="get_text_form_container">
+            <header class="header">Bacon Ipsum</header>
+            <form class="get_text_form" onsubmit="getbi(this); return false;">
+                <label for="bi_num_of_paras">How many paragraphs you want?</label>
+                    <input type="number" id="bi_num_of_paras" name="bi_num_of_paras" min="1" max="5" value="2"><br>
+                <label for="bi_len_of_paras">What type of paragraphs would you like?</label>
+                    <select id="bi_type_of_paras" name="bi_type_of_paras">
+                        <option value="all-meat">all meat</option>
+                        <option value="meat-and-filler">meat and filler</option>
+                    </select><br>
+                <button>GET</button>
+            </form>
+            <section id="bitext" class="api_text_container"></section>
+        </section>
+    </div>
+
+
+<!-- RIP npm, yarn, webpack - jQuery manually added -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+function getli(me)
+{
+    let apiRequest = "https://loripsum.net/api";
+    for(let i = 0; i < me.elements.length; i++)
+    {
+        console.log(i+":"+me.elements[i].value);
+        if(me.elements[i].nodeName === "INPUT" || me.elements[i].nodeName === "SELECT")
+        {
+            apiRequest += "/" + me.elements[i].value;
+        }
+    }
+    $.ajax({
+      method: "POST",
+      url: window.location.href,
+      data: { apiRequest: apiRequest },
+      success: function(data)
+      {
+          console.log(data);
+          $('#litext').html(data);
+      }
+    });
+}
+</script>
 {% endblock %}

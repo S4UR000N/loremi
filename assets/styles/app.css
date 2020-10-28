@@ -4,7 +4,7 @@ body
 }
 
 /* index html twig */
-#index_container
+#main_content_container
 {
     display: flex;
     flex-direction: row;
@@ -12,7 +12,7 @@ body
 
     text-align: center;
 }
-#index_container *
+#main_content_container *
 {
     text-align: center;
 }
@@ -37,6 +37,13 @@ button
 
     padding: 6px;
     margin: 10px 0 15px 0;
+}
+#y_axis_border
+{
+    width: 2px;
+    background-color: white;
+
+    margin-bottom: 10px;
 }
 #litext
 {}

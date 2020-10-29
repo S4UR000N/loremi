@@ -46,16 +46,11 @@ class IndexController extends AbstractController
             {
                 foreach ($arr[$text_id] as $paragraph => $words)
                 {
-                    ${'populateParagraphModelService' . $paragraph} = new PopulateParagraphModelService();
-                    ${'populateParagraphModelService' . $paragraph}->populateParagraphModel($text_id, $paragraph, $words);
-                    array_push($paras, ${'populateParagraphModelService' . $paragraph}->getParagraphModel());
+                    $populateParagraphModelService = new PopulateParagraphModelService();
+                    $populateParagraphModelService->populateParagraphModel($text_id, $paragraph, $words);
+                    array_push($paras, $populateParagraphModelService->getParagraphModel());
                 }
             }
-
-            /*
-            $populateParagraphModelService = new PopulateParagraphModelService();
-            array_push($paras, $populateParagraphModelService->populateParagraphModel(0, 0, $arr[0][0]));
-            */
 
             $processParagraphModelService = new ProcessParagraphModelService();
             $processParagraphModelService = $processParagraphModelService->processParagraphs($paras);

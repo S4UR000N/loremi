@@ -13,6 +13,8 @@ use App\Service\PopulateParagraphModelService;
 use App\Service\PopulateTextModelService;
 use App\Service\PopulateSimilarityModelService;
 
+use App\Service\ProcessParagraphModelService;
+
 
 class IndexController extends AbstractController
 {
@@ -38,16 +40,28 @@ class IndexController extends AbstractController
         if(isset($_POST['txtsObj']))
         {
             $arr = json_decode($_POST['txtsObj'], true);
+            $paras = [];
+
             foreach ($arr as $text_id => $text_nodes)
             {
                 foreach ($arr[$text_id] as $paragraph => $words)
                 {
                     ${'populateParagraphModelService' . $paragraph} = new PopulateParagraphModelService();
                     ${'populateParagraphModelService' . $paragraph}->populateParagraphModel($text_id, $paragraph, $words);
+                    array_push($paras, ${'populateParagraphModelService' . $paragraph}->getParagraphModel());
                 }
             }
+
+            /*
+            $populateParagraphModelService = new PopulateParagraphModelService();
+            array_push($paras, $populateParagraphModelService->populateParagraphModel(0, 0, $arr[0][0]));
+            */
+
+            $processParagraphModelService = new ProcessParagraphModelService();
+            $processParagraphModelService = $processParagraphModelService->processParagraphs($paras);
+
             // $str = $populateParagraphModelService0->test();
-            return new Response(json_encode(), Response::HTTP_OK);
+            return new Response(json_encode($paras), Response::HTTP_OK);
         }
     }
 }

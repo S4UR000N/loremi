@@ -5,14 +5,15 @@ namespace App\Model;
 
 class ParagraphModel
 {
-    private $text_id;
-    private $paragraph;
-    private $words;
+    public $text_id = 0;
+    public $paragraph = 0;
+    public $words = [];
 
     // TEXT ID
     public function setTextID(int $id)
     {
         $this->text_id = $id;
+        return $this;
     }
     public function getTextID()
     {
@@ -20,9 +21,10 @@ class ParagraphModel
     }
 
     // PARAGRAPH
-    public function setParagraph(string $str)
+    public function setParagraph(int $num)
     {
-        $this->paragraph = $str;
+        $this->paragraph = $num;
+        return $this;
     }
     public function getParagraph()
     {
@@ -33,6 +35,7 @@ class ParagraphModel
     public function setWords(array $arr)
     {
         $this->words = $arr;
+        return $this;
     }
     public function getWords()
     {

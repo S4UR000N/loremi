@@ -9,6 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Service\SmithWatermanGotohService;
 use App\Service\SmithWatermanMatchMismatchService;
 
+use App\Service\PopulateParagraphModelService;
+use App\Service\PopulateTextModelService;
+use App\Service\PopulateSimilarityModelService;
+
 
 class IndexController extends AbstractController
 {
@@ -34,7 +38,15 @@ class IndexController extends AbstractController
         if(isset($_POST['txtsObj']))
         {
             $arr = json_decode($_POST['txtsObj'], true);
-            $str = var_dump($arr);
+            foreach ($arr as $k => $v)
+            {
+                foreach ($arr[$k] as $key => $val)
+                {
+                    ${'populateParagraphModelService' . $key} = new PopulateParagraphModelService();
+                }
+            }
+            $str = $populateParagraphModelService0->test();
+
             return new Response($str, Response::HTTP_OK);
         }
     }

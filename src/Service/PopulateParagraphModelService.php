@@ -9,4 +9,8 @@ class PopulateParagraphModelService
     {
         
     }
+    public function test()
+    {
+        return "text test";
+    }
 }

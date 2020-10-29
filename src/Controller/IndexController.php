@@ -15,7 +15,10 @@ class IndexController extends AbstractController
     public function indexGET(): Response
     {
         $o = new SmithWatermanGotohService();
-        $o = $o->compare("LEGENDARY","LEGiNDcRY");
+        $o = $o->compare(
+            "LEGENDARY"
+            ,
+            "LEGiNDcRY");
         return $this->render('index.html.twig', ['o' => $o]);
     }
 

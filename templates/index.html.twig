@@ -7,6 +7,7 @@
     </div>
 
     <div id="index_container">
+        <!-- Get and Manipulate data -->
         <main id="main_content_container">
             <section class="get_text_form_container">
                 <header class="header">Lorem Ipsum</header>
@@ -41,11 +42,23 @@
                 <section id="bitext" class="api_text_container"></section>
             </section>
         </main>
+
+        <!-- Display data -->
+        <main id="main_data_container">
+            <div class="btnHolder"><button onclick="toggleButton(this)" class="comparebtn" disabled>Compare Texts</button></div>
+            <section id="data_container"></section>
+        </main>
     </div>
 
 <!-- RIP npm, yarn, webpack - jQuery manually added -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
+let getlisUsed, getbisUsed, mainBorder, litext, bitext = false;
+
+function toggleButton(me)
+{
+    return $(me).prop("disabled", (_, val) => !val);
+}
 function getli(me)
 {
     let apiRequest = "https://loripsum.net/api";
@@ -63,10 +76,20 @@ function getli(me)
       success: function(data)
       {
           $('#litext').html(data);
+          getlisUsed = true;
+          if(!mainBorder)
+          {
+              mainBorder = !mainBorder;
+              $('#main_content_container').css("border-bottom", "2px solid white");
+          }
+          litext = data;
+          if(getlisUsed && getbisUsed)
+          {
+              toggleButton($('.comparebtn').eq(0));
+          }
       }
     });
 }
-
 function getbi(me)
 {
     let apiRequest = "https://baconipsum.com/api/\?type=" + me.elements[1].value + "&paras=" + me.elements[0].value + "&start-with-lorem=1&format=html";
@@ -77,6 +100,17 @@ function getbi(me)
       success: function(data)
       {
           $('#bitext').html(data);
+          getbisUsed = true;
+          if(!mainBorder)
+          {
+              mainBorder = !mainBorder;
+              $('#main_content_container').css("border-bottom", "2px solid white");
+          }
+          bitext = data;
+          if(getlisUsed && getbisUsed)
+          {
+              toggleButton($('.comparebtn').eq(0));
+          }
       }
     });
 }

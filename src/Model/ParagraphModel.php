@@ -22,20 +22,20 @@ class ParagraphModel
     // PARAGRAPH
     public function setParagraph(string $str)
     {
-        $this->text_id = $id;
+        $this->paragraph = $str;
     }
     public function getParagraph()
     {
-        return $this->text_id;
+        return $this->paragraph;
     }
 
     // WORDS
     public function setWords(array $arr)
     {
-        $this->text_id = $id;
+        $this->words = $arr;
     }
     public function getWords()
     {
-        return $this->text_id;
+        return $this->words;
     }
 }

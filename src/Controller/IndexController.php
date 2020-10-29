@@ -38,16 +38,16 @@ class IndexController extends AbstractController
         if(isset($_POST['txtsObj']))
         {
             $arr = json_decode($_POST['txtsObj'], true);
-            foreach ($arr as $k => $v)
+            foreach ($arr as $text_id => $text_nodes)
             {
-                foreach ($arr[$k] as $key => $val)
+                foreach ($arr[$text_id] as $paragraph => $words)
                 {
-                    ${'populateParagraphModelService' . $key} = new PopulateParagraphModelService();
+                    ${'populateParagraphModelService' . $paragraph} = new PopulateParagraphModelService();
+                    ${'populateParagraphModelService' . $paragraph}->populateParagraphModel($text_id, $paragraph, $words);
                 }
             }
-            $str = $populateParagraphModelService0->test();
-
-            return new Response($str, Response::HTTP_OK);
+            // $str = $populateParagraphModelService0->test();
+            return new Response(json_encode(), Response::HTTP_OK);
         }
     }
 }

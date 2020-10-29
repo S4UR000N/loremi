@@ -45,7 +45,7 @@
 
         <!-- Display data -->
         <main id="main_data_container">
-            <div class="btnHolder"><button onclick="toggleButton(this)" class="comparebtn" disabled>Compare Texts</button></div>
+            <div class="btnHolder"><button id="comparebtn" disabled>Compare Texts</button></div>
             <section id="data_container"></section>
         </main>
     </div>
@@ -85,7 +85,7 @@ function getli(me)
           litext = data;
           if(getlisUsed && getbisUsed)
           {
-              toggleButton($('.comparebtn').eq(0));
+              toggleButton($('#comparebtn'));
           }
       }
     });
@@ -109,7 +109,7 @@ function getbi(me)
           bitext = data;
           if(getlisUsed && getbisUsed)
           {
-              toggleButton($('.comparebtn').eq(0));
+              toggleButton($('#comparebtn'));
           }
       }
     });

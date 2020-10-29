@@ -48,7 +48,7 @@ button
 }
 
 /* Main Data Container */
-button.comparebtn
+#comparebtn
 {
     font-size: 1.4em;
     border-radius: 8px;

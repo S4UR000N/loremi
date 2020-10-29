@@ -45,7 +45,7 @@
 
         <!-- Display data -->
         <main id="main_data_container">
-            <div class="btnHolder"><button id="comparebtn" disabled>Compare Texts</button></div>
+            <div class="btnHolder"><button id="comparebtn" onclick="compareTexts()" disabled>Compare Texts</button></div>
             <section id="data_container"></section>
         </main>
     </div>
@@ -53,7 +53,7 @@
 <!-- RIP npm, yarn, webpack - jQuery manually added -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
-let getlisUsed, getbisUsed, mainBorder, litext, bitext = false;
+let getlisUsed, getbisUsed, mainBorder, litext, bitext, comparebtn = false;
 
 function toggleButton(me)
 {
@@ -83,8 +83,9 @@ function getli(me)
               $('#main_content_container').css("border-bottom", "2px solid white");
           }
           litext = data;
-          if(getlisUsed && getbisUsed)
+          if(getlisUsed && getbisUsed && !comparebtn)
           {
+              comparebtn = true;
               toggleButton($('#comparebtn'));
           }
       }
@@ -107,12 +108,26 @@ function getbi(me)
               $('#main_content_container').css("border-bottom", "2px solid white");
           }
           bitext = data;
-          if(getlisUsed && getbisUsed)
+          if(getlisUsed && getbisUsed && !comparebtn)
           {
-              toggleButton($('#comparebtn'));
-          }
+              comparebtn = true;
+              toggleButton($('#comparebtn'));          }
       }
     });
+}
+function compareTexts()
+{
+    let txtsObj = {};
+    let txts = document.querySelectorAll('.api_text_container');
+    for(var i = 0; i < txts.length; i++)
+    {
+        txtsObj[i] = [];
+        for(var j = 0; j < txts[i].children.length; j++)
+        {
+            txtsObj[i][j] = txts[i].children[j].innerText;
+        }
+    }
+    console.log(txtsObj);
 }
 </script>
 {% endblock %}

@@ -5,15 +5,15 @@ namespace App\Model;
 
 class AllTextsModel
 {
-    private array $texts;
+    private array $allTexts;
 
     // TEXTS
     public function addTextsModel(App\Model\TextsModel $obj)
     {
-        $this->texts[] = $obj;
+        $this->allTexts[] = $obj;
     }
     public function getTextsModel(int $index)
     {
-        return $this->texts[$index];
+        return $this->allTexts[$index];
     }
 }

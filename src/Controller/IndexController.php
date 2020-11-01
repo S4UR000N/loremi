@@ -39,26 +39,30 @@ class IndexController extends AbstractController
         }
         if(isset($_POST['txtsObj']))
         {
-            $textsRaw = json_decode($_POST['txtsObj'], true);
-            $texts = [];
 
-            /*
-            foreach($textsRaw as $text_id => $text)
-            {
-                foreach($text as $paragraph_id => $words)
-                {
-                    $populateParagraphModelService = new PopulateParagraphModelService();
-                    $populateParagraphModelService->populateParagraphModel($text_id, $paragraph_id, $words);
-                    array_push($paras, $populateParagraphModelService->getParagraphModel());
-                }
-            }
-
-            $processParagraphModelService = new ProcessParagraphModelService();
-            $processParagraphModelService = $processParagraphModelService->processParagraphs($paras);
-            */
-            // $str = $populateParagraphModelService0->test();
-            // return new Response(json_encode(["paras" => $paras, "process" => $processParagraphModelService]), Response::HTTP_OK);
-            return new Response(json_encode($arr), Response::HTTP_OK);
         }
     }
 }
+
+/*
+$textsRaw = json_decode($_POST['txtsObj'], true);
+$texts = [];
+
+
+foreach($textsRaw as $text_id => $text)
+{
+    foreach($text as $paragraph_id => $words)
+    {
+        $populateParagraphModelService = new PopulateParagraphModelService();
+        $populateParagraphModelService->populateParagraphModel($text_id, $paragraph_id, $words);
+        array_push($paras, $populateParagraphModelService->getParagraphModel());
+    }
+}
+
+$processParagraphModelService = new ProcessParagraphModelService();
+$processParagraphModelService = $processParagraphModelService->processParagraphs($paras);
+
+// $str = $populateParagraphModelService0->test();
+// return new Response(json_encode(["paras" => $paras, "process" => $processParagraphModelService]), Response::HTTP_OK);
+return new Response(json_encode($arr), Response::HTTP_OK);
+*/

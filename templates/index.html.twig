@@ -123,6 +123,7 @@ function compareTexts()
             txtsObj[i][j] = txts[i].children[j].innerText;
         }
     }
+    console.log("JS made this:");
     console.log(txtsObj);
     $.ajax({
       method: "POST",
@@ -130,6 +131,7 @@ function compareTexts()
       data: { txtsObj: JSON.stringify(txtsObj) },
       success: function(data)
       {
+          /*
           data = JSON.parse(data);
           console.log(data)
           console.log("000000000000000000000");
@@ -137,6 +139,9 @@ function compareTexts()
           console.log("111111111111111111111");
           console.log(data.process);
           // document.write(data[0].text_id);
+          */
+          console.log("PHP returned:");
+          console.log(data);
       }
     });
 }

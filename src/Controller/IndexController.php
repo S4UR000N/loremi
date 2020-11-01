@@ -56,7 +56,7 @@ class IndexController extends AbstractController
             $processParagraphModelService = $processParagraphModelService->processParagraphs($paras);
 
             // $str = $populateParagraphModelService0->test();
-            return new Response(json_encode($paras), Response::HTTP_OK);
+            return new Response(json_encode(["paras" => $paras, "process" => $processParagraphModelService]), Response::HTTP_OK);
         }
     }
 }

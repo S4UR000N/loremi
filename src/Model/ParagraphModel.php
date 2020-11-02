@@ -7,12 +7,14 @@ class ParagraphModel
 {
     public array $words;
 
-    // WORDS
+    // SET METHODS
     public function setWords(array $arr)
     {
         $this->words = $arr;
         return $this;
     }
+
+    // GET METHODS
     public function getWords()
     {
         return $this->words;

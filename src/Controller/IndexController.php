@@ -6,14 +6,16 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Model\AllTextsModel;
+use App\Model\TextsModel;
+use App\Model\ParagraphModel;
+
+use App\Service\AllTextsService;
+use App\Service\TextsService;
+use App\Service\ParagraphService;
+
 use App\Service\SmithWatermanGotohService;
 use App\Service\SmithWatermanMatchMismatchService;
-
-use App\Service\PopulateParagraphModelService;
-use App\Service\PopulateTextModelService;
-use App\Service\PopulateSimilarityModelService;
-
-use App\Service\ProcessParagraphModelService;
 
 
 class IndexController extends AbstractController
@@ -39,7 +41,10 @@ class IndexController extends AbstractController
         }
         if(isset($_POST['txtsObj']))
         {
-
+            $txtsObj = json_decode($_POST['txtsObj'], true);
+            $allTextsService = new AllTextsService();
+            $allTextsService = $allTextsService->setInputData($txtsObj);
+            $allTextsService = $allTextsService->populateAllTextsModel();
         }
     }
 }

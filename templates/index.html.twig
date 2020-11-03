@@ -130,12 +130,10 @@ function compareTexts()
       data: { txtsObj: JSON.stringify(txtsObj) },
       success: function(data)
       {
-          data = JSON.parse(data);
           console.log(data)
-          console.log("000000000000000000000");
-          console.log(data.paras);
-          console.log("111111111111111111111");
-          console.log(data.process);
+          data = JSON.parse(data);
+          console.log("parsed");
+          console.log(data)
           // document.write(data[0].text_id);
       }
     });

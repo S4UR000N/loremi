@@ -6,15 +6,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Model\AllTextsModel;
+use App\Model\TextsModel;
+
+use App\Service\AllTextsService;
+use App\Service\TextsService;
+
 use App\Service\SmithWatermanGotohService;
 use App\Service\SmithWatermanMatchMismatchService;
-
-use App\Service\PopulateParagraphModelService;
-use App\Service\PopulateTextModelService;
-use App\Service\PopulateSimilarityModelService;
-
-use App\Service\ProcessParagraphModelService;
-
 
 class IndexController extends AbstractController
 {
@@ -40,23 +39,21 @@ class IndexController extends AbstractController
         if(isset($_POST['txtsObj']))
         {
             $arr = json_decode($_POST['txtsObj'], true);
-            $paras = [];
+            $texts = [];
 
-            foreach ($arr as $text_id => $text_nodes)
+            foreach($arr as $text_id => $arr_words)
             {
-                foreach ($arr[$text_id] as $paragraph => $words)
+                $texts[$text_id] = "";
+                foreach($arr_words as $key => $words)
                 {
-                    $populateParagraphModelService = new PopulateParagraphModelService();
-                    $populateParagraphModelService->populateParagraphModel($text_id, $paragraph, $words);
-                    array_push($paras, $populateParagraphModelService->getParagraphModel());
+                    $texts[$text_id] .= $words;
                 }
             }
 
-            $processParagraphModelService = new ProcessParagraphModelService();
-            $processParagraphModelService = $processParagraphModelService->processParagraphs($paras);
+            $allTextsService = new AllTextsService();
+            $allTextsService = $allTextsService->populateAllTextsModel($texts);
 
-            // $str = $populateParagraphModelService0->test();
-            return new Response(json_encode(["paras" => $paras, "process" => $processParagraphModelService]), Response::HTTP_OK);
+            return new Response(json_encode($allTextsService), Response::HTTP_OK);
         }
     }
 }

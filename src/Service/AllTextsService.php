@@ -22,7 +22,7 @@ class AllTextsService
             $textModel = $textService->populateTextModel($text_id, $words); // this creates and populates App\Model\TextModel
             $this->allTextsModel = $this->allTextsModel->addTextModel($textModel);
         }
-        return $this->allTextsModel->getTextModel(0);
+        return $this->allTextsModel;
     }
 
     // GET METHODS

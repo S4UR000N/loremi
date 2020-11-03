@@ -19,4 +19,9 @@ class AllTextsModel
     {
         return $this->allTexts[$index];
     }
+    public function getAllTextModels()
+    {
+        return $this->allTexts;
+    }
+
 }

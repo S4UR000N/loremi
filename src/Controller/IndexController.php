@@ -51,9 +51,12 @@ class IndexController extends AbstractController
             }
 
             $allTextsService = new AllTextsService();
-            $allTextsService = $allTextsService->populateAllTextsModel($texts);
+            $allTextsModel = $allTextsService->populateAllTextsModel($texts);
 
-            return new Response(json_encode($allTextsService), Response::HTTP_OK);
+            $similarityService = new SimilarityService();
+            $resultsModel = $similarityService->compareTextModels($allTextsModel->getAllTextModels());
+
+            return new Response(json_encode($resultsModel), Response::HTTP_OK);
         }
     }
 }

@@ -20,8 +20,6 @@ class TextService
         return $this->textModel;
     }
 
-    // GET METHODS
-
     // HELPER METHODS
     public function applySoundex($words)
     {

@@ -10,17 +10,17 @@ class ResultsModel
     public $crossSection;
 
     // SET / MODIFY METHODS
-    public function text1Diff(array $arr)
+    public function setText1Diff(array $arr)
     {
         $this->text1Diff = $arr;
         return $this;
     }
-    public function text2Diff(array $arr)
+    public function setText2Diff(array $arr)
     {
         $this->text2Diff = $arr;
         return $this;
     }
-    public function crossSection($arg)
+    public function setCrossSection($arg)
     {
         $this->crossSection = $arg;
         return $this;

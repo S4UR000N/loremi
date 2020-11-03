@@ -8,9 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 use App\Model\AllTextsModel;
 use App\Model\TextsModel;
+use App\Model\ResultsModel;
 
 use App\Service\AllTextsService;
 use App\Service\TextsService;
+use App\Service\SimilarityService;
 
 use App\Service\SmithWatermanGotohService;
 use App\Service\SmithWatermanMatchMismatchService;

@@ -25,8 +25,6 @@ class AllTextsService
         return $this->allTextsModel;
     }
 
-    // GET METHODS
-
     // HELPER METHODS
     private function textToArray(string $text)
     {
@@ -43,5 +41,4 @@ class AllTextsService
         }
         return $words;
     }
-
 }
